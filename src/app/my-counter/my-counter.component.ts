@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { State, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as CounterActions from "../store/counter.actions";
+import { CounterReducer } from "../store/counter.reducer";
 
 @Component({
   selector: 'app-my-counter',
@@ -9,14 +10,21 @@ import * as CounterActions from "../store/counter.actions";
   styleUrls: ['./my-counter.component.css']
 })
 export class MyCounterComponent implements OnInit {
-  count$: Observable< number>;
+  count$: number;
 
-  constructor(private store: Store<{count: number}>) { 
-    this.count$ = this.store.select('count');
+  constructor(private store: Store<{ count: {count: number}}>) { 
+    this.store.select('count').subscribe(
+      response => {
+        this.count$ = response.count}
+    );
+    console.log(this.count$);
+    
   }
 
   increment(){
   this.store.dispatch(new CounterActions.Increment()); 
+  console.log(this.count$);
+  
   }
 
   decrement(){
