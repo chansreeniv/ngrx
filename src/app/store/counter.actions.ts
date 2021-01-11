@@ -6,12 +6,10 @@ export const RESET = '[Count Counter] Reset';
 
 export class Increment implements Action {
   readonly type = INCREMENT;
-  constructor(private payload: number){}
 }
 
 export class Decrement implements Action {
   readonly type = DECREMENT;
-  constructor(private payload: number){}
 }
 
 export class Reset implements Action {

@@ -6,7 +6,7 @@ export interface State {
 
 const initialState: State = {
   count: 0
-}
+};
 
 export function CounterReducer(
   state: State = initialState,
@@ -15,17 +15,15 @@ export function CounterReducer(
   switch (action.type) {
     case CounterActions.INCREMENT:
       return {
-        ...state,
-        count: [state.count + 1]
+        count: state.count + 1
       }
     case CounterActions.DECREMENT:
       return {
-        ...state,
-        count: [state.count - 1]
+        count: state.count - 1
       }
     case CounterActions.RESET:
       return {
-        state: 0,
+       count: 0
       }
     default:
       return state;
